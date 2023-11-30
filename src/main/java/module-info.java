@@ -7,6 +7,7 @@ module pl.dietbuilder {
     requires net.synedra.validatorfx;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql;
 
     opens pl.dietbuilder.app to javafx.fxml;
     exports pl.dietbuilder.app;
@@ -19,5 +20,9 @@ module pl.dietbuilder {
 
     opens pl.dietbuilder.dbmanagement to javafx.fxml;
     exports pl.dietbuilder.dbmanagement;
+    exports pl.dietbuilder.controllers.meal;
+    opens pl.dietbuilder.controllers.meal to javafx.fxml;
+    exports pl.dietbuilder.controllers.product;
+    opens pl.dietbuilder.controllers.product to javafx.fxml;
 
 }

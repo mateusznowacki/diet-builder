@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="600.0" prefWidth="1200.0" stylesheets="@../css/cupertino-dark.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.dietbuilder.controllers.MainController">
@@ -18,7 +19,7 @@
             <VBox prefWidth="200.0" style="-fx-background-color: -color-base-7;" stylesheets="@../css/cupertino-dark.css" BorderPane.alignment="CENTER">
                <children>
                   <Label alignment="CENTER" prefHeight="40.0" prefWidth="200.0" style="-fx-font-weight: bold;" styleClass="title-4" stylesheets="@../css/cupertino-dark.css" text="Produkty" />
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="6.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" styleClass="accent" stylesheets="@../css/cupertino-dark.css" text="Dodaj">
+                  <Button fx:id="addProduct" alignment="BASELINE_LEFT" graphicTextGap="6.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" styleClass="accent" stylesheets="@../css/cupertino-dark.css" text="Dodaj">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -33,7 +34,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Edytuj">
+                  <Button fx:id="editProduct" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#editProduct" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Edytuj">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -49,7 +50,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Usuń">
+                  <Button fx:id="deleteProduct" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Usuń">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -66,7 +67,7 @@
                      </VBox.margin>
                   </Button>
                   <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="200.0" style="-fx-font-weight: bold;" styleClass="title-4" stylesheets="@../css/cupertino-dark.css" text="Posiłki" />
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="90.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Dodaj">
+                  <Button fx:id="addMeal" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="90.0" mnemonicParsing="false" onAction="#addMeal" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Dodaj">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -82,7 +83,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Edytuj">
+                  <Button fx:id="editMeal" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#editMeal" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Edytuj">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -98,7 +99,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Usuń">
+                  <Button fx:id="deleteMeal" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" onAction="#deleteMeal" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Usuń">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -115,7 +116,7 @@
                      </VBox.margin>
                   </Button>
                   <Label alignment="CENTER" layoutX="10.0" layoutY="170.0" prefHeight="40.0" prefWidth="200.0" style="-fx-font-weight: bold;" styleClass="title-4" stylesheets="@../css/cupertino-dark.css" text="Lista zakupów" />
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Dodaj">
+                  <Button fx:id="addShoppingList" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#addShoppingList" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Dodaj">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -137,27 +138,35 @@
                </opaqueInsets>
             </VBox>
          </left>
+         <center>
+            <StackPane fx:id="stackPane" prefHeight="496.0" prefWidth="1000.0" BorderPane.alignment="CENTER" />
+         </center>
          <top>
-            <HBox style="-fx-background-color: -color-base-7;" stylesheets="@../css/cupertino-dark.css" BorderPane.alignment="CENTER">
+            <AnchorPane BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/healthy_eating.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Label style="-fx-font-size: 45;" styleClass="title-1" stylesheets="@../css/cupertino-dark.css" text="Diet Builder">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Label>
+                  <HBox prefHeight="0.0" prefWidth="1200.0" style="-fx-background-color: -color-base-7;" stylesheets="@../css/cupertino-dark.css">
+                     <children>
+                        <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/healthy_eating.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label style="-fx-font-size: 45;" styleClass="title-1" stylesheets="@../css/cupertino-dark.css" text="Diet Builder">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                  <Button fx:id="exitButton" layoutX="884.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#closeApplication" prefHeight="35.0" prefWidth="35.0" styleClass="danger" stylesheets="@../css/cupertino-dark.css" text="X" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="15.0" />
                </children>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </HBox>
+            </AnchorPane>
          </top>
       </BorderPane>
    </children>
