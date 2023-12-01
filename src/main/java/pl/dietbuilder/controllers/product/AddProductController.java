@@ -6,6 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import pl.dietbuilder.dbmanagement.CategoryDAO;
+import pl.dietbuilder.dbmanagement.ConnectionManager;
+
+import java.util.ArrayList;
 
 public class AddProductController {
 
@@ -16,7 +21,7 @@ public class AddProductController {
     private TextField carbohydratesAmount;
 
     @FXML
-    private ChoiceBox<?> categoryChoiceBox;
+    private ChoiceBox<String> categoryChoiceBox;
 
     @FXML
     private TextField fatAmount;
@@ -54,4 +59,12 @@ public class AddProductController {
     void setProteinAmount(ActionEvent event) {
 
     }
+
+    @FXML
+    void chooseCategory(MouseEvent event) {
+        CategoryDAO categoryDAO = new CategoryDAO(ConnectionManager.getInstance().getConnection());
+        System.out.println(categoryDAO.getCategories());
+        categoryChoiceBox.getItems().addAll(categoryDAO.getCategories());
+    }
+
 }

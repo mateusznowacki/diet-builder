@@ -52,6 +52,7 @@ public class MainController {
     @FXML
     void addProduct(ActionEvent event) {
         loadView("/fxml/addProduct.fxml");
+        //initializeChoiceBox();
     }
 
     @FXML
