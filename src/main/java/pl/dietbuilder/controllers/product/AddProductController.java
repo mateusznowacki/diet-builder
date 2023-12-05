@@ -15,11 +15,10 @@ import pl.dietbuilder.dbmanagement.CategoryDAO;
 import pl.dietbuilder.dbmanagement.ConnectionManager;
 import pl.dietbuilder.dbmanagement.ProductDAO;
 import pl.dietbuilder.model.Product;
+import pl.dietbuilder.utils.ImageGetter;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import static pl.dietbuilder.utils.ImageSearch.getFirstImageFromSearch;
 
 import static pl.dietbuilder.utils.NumberFormatter.formatDoubleWithComma;
 
@@ -52,10 +51,8 @@ public class AddProductController implements Initializable {
     @FXML
     void setProductView(String query) {
         try {
-            String imageUrl = getFirstImageFromSearch(query);
-            System.out.println("Link do pierwszego obrazka: " + imageUrl);
-            Image image = new Image("G:\\JavaProjects\\diet-builder\\downloaded_image.jpg");
-            ;
+            String currentImageUrl = ImageGetter.getFirstImageFromSearch(query);
+            Image image = new Image("file:src/main/resources/icons/downloaded_image.jpg");
             productView.setImage(image);
         } catch (Exception e) {
             e.printStackTrace();

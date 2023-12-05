@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-public class ImageSearch {
+public class ImageGetter {
 
     private static final String API_KEY = "b4X109BsK3DRQ29SxuEB6JLX7xSzE6nh636cosGE89l0xGYQaXmUMJSG";
 
@@ -33,12 +33,11 @@ public class ImageSearch {
                 String imageUrl = photoUrls.get(0);
                 saveImageToDisk(imageUrl, "downloaded_image.jpg");
                 return imageUrl;
-            } else {
-                return null;
             }
         } else {
             throw new RuntimeException("Nie udało się pobrać obrazka. Kod odpowiedzi: " + response.statusCode());
         }
+        return null;
     }
 
     private static void saveImageToDisk(String imageUrl, String fileName) throws Exception {
@@ -50,7 +49,7 @@ public class ImageSearch {
         HttpResponse<byte[]> response = client.send(request, HttpResponse.BodyHandlers.ofByteArray());
 
         // Zapis obrazu na dysku
-        Path filePath = Path.of(fileName);
+        Path filePath = Path.of("src/main/resources/icons/"+ fileName);
         Files.write(filePath, response.body());
     }
 }
