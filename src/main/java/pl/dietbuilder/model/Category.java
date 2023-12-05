@@ -1,3 +1,0 @@
-package pl.dietbuilder.model;
-
-

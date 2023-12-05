@@ -6,8 +6,8 @@ public class Meal extends NutritionalInformation {
     private int id;
     private ArrayList<Product> products;
 
-    public Meal(String name, double calories, double proteins, double fats, double carbohydrates, double fiber, double weight) {
-        super(name, calories, proteins, fats, carbohydrates, fiber, weight);
+    public Meal(String name, double calories, double proteins, double fats, double carbohydrates) {
+        super(name,calories, proteins, fats, carbohydrates);
     }
 
     public ArrayList<Product> getProducts() {

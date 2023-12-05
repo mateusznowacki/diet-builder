@@ -6,17 +6,16 @@ public abstract class NutritionalInformation {
     private double proteins;
     private double fats;
     private double carbohydrates;
-    private double fiber;
-    private double weight;
 
-    public NutritionalInformation(String name, double calories, double proteins, double fats, double carbohydrates, double fiber, double weight) {
+
+
+    public NutritionalInformation(String name, double calories, double proteins, double fats, double carbohydrates) {
         this.name = name;
         this.calories = calories;
         this.proteins = proteins;
         this.fats = fats;
         this.carbohydrates = carbohydrates;
-        this.fiber = fiber;
-        this.weight = weight;
+
     }
 
     public String getName() {
@@ -55,19 +54,6 @@ public abstract class NutritionalInformation {
         this.carbohydrates = carbohydrates;
     }
 
-    public double getFiber() {
-        return fiber;
-    }
 
-    public void setFiber(double fiber) {
-        this.fiber = fiber;
-    }
 
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
 }

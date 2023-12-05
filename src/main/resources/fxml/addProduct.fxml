@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -17,41 +18,36 @@
    <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <ImageView fx:id="productView" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </BorderPane.margin>
-            </ImageView>
-         </left>
-         <center>
-            <AnchorPane prefHeight="535.0" prefWidth="645.0">
+            <AnchorPane prefHeight="535.0" prefWidth="645.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label alignment="CENTER" graphicTextGap="6.0" layoutX="208.0" layoutY="24.0" stylesheets="@../css/cupertino-dark.css" text="Dodawanie produktu">
+                  <Label alignment="CENTER" graphicTextGap="6.0" layoutX="257.0" layoutY="14.0" stylesheets="@../css/cupertino-dark.css" text="Dodawanie produktu (100g/100ml)">
                      <styleClass>
                         <String fx:value="text-bolder" />
                         <String fx:value="title-2" />
                      </styleClass>
                   </Label>
-                  <GridPane alignment="CENTER" layoutX="3.0" layoutY="74.0" prefHeight="440.0" prefWidth="563.0" stylesheets="@../css/cupertino-dark.css">
+                  <GridPane alignment="CENTER" layoutY="57.0" prefHeight="458.0" prefWidth="922.0" stylesheets="@../css/cupertino-dark.css">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="300.0" prefWidth="424.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="205.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="233.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label alignment="CENTER" styleClass="title-4" stylesheets="@../css/cupertino-dark.css" text="Nazwa" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                        <Label alignment="CENTER" styleClass="title-4" stylesheets="@../css/cupertino-dark.css" text="Nazwa" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                            <padding>
                               <Insets right="20.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="productName" onAction="#setProductName" prefHeight="30.0" GridPane.columnIndex="1">
+                        <TextField fx:id="productName" prefHeight="32.0" prefWidth="283.0" GridPane.columnIndex="2">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
@@ -59,17 +55,17 @@
                               <Insets />
                            </opaqueInsets>
                         </TextField>
-                        <Label styleClass="title-4" stylesheets="@../css/cupertino-dark.css" text="Kategoria" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                        <Label styleClass="title-4" stylesheets="@../css/cupertino-dark.css" text="Kategoria" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <padding>
                               <Insets right="20.0" />
                            </padding>
                         </Label>
-                        <Label styleClass="title-4" stylesheets="@../css/cupertino-dark.css" text="Węglowodany (g)" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                        <Label styleClass="title-4" stylesheets="@../css/cupertino-dark.css" text="Węglowodany (g)" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                            <padding>
                               <Insets right="20.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="carbohydratesAmount" onAction="#setCarbohydratesAmount" prefHeight="30.0" prefWidth="224.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <TextField fx:id="carbohydratesAmount" prefHeight="30.0" prefWidth="224.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
@@ -77,7 +73,7 @@
                               <Insets />
                            </opaqueInsets>
                         </TextField>
-                        <TextField fx:id="fatAmount" onAction="#setFatAmount" prefHeight="30.0" prefWidth="224.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <TextField fx:id="fatAmount" prefHeight="30.0" prefWidth="224.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
@@ -85,17 +81,17 @@
                               <Insets />
                            </opaqueInsets>
                         </TextField>
-                        <Label styleClass="title-4" stylesheets="@../css/cupertino-dark.css" text="Tłuszcze (g)" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                        <Label styleClass="title-4" stylesheets="@../css/cupertino-dark.css" text="Tłuszcze (g)" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                            <padding>
                               <Insets right="20.0" />
                            </padding>
                         </Label>
-                        <Label styleClass="title-4" stylesheets="@../css/cupertino-dark.css" text="Białko (g)" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                        <Label styleClass="title-4" stylesheets="@../css/cupertino-dark.css" text="Białko (g)" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                            <padding>
                               <Insets right="20.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="proteinAmount" onAction="#setProteinAmount" prefHeight="30.0" prefWidth="224.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <TextField fx:id="proteinAmount" prefHeight="30.0" prefWidth="224.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
@@ -103,18 +99,39 @@
                               <Insets />
                            </opaqueInsets>
                         </TextField>
-                        <ChoiceBox fx:id="categoryChoiceBox" prefHeight="30.0" prefWidth="283.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button fx:id="addButton" mnemonicParsing="false" onAction="#addNewProduct" stylesheets="@../css/cupertino-dark.css" text="Dodaj" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                        <ChoiceBox fx:id="categoryChoiceBox" prefHeight="32.0" prefWidth="316.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Button fx:id="addButton" mnemonicParsing="false" onAction="#addNewProduct" stylesheets="@../css/cupertino-dark.css" text="Dodaj" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                            <styleClass>
                               <String fx:value="success" />
                               <String fx:value="title-3" />
                            </styleClass>
                         </Button>
+                        <ImageView fx:id="productView" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                           <image>
+                              <Image url="@../icons/marsz_logo.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <Label styleClass="title-4" stylesheets="@../css/cupertino-dark.css" text="Energia (kcal) " GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                           <padding>
+                              <Insets right="20.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="energyAmount" prefHeight="32.0" prefWidth="283.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </TextField>
                      </children>
                   </GridPane>
                </children>
             </AnchorPane>
-         </center>
+         </left>
       </BorderPane>
    </children>
 </AnchorPane>

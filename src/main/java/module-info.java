@@ -8,6 +8,8 @@ module pl.dietbuilder {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
+    requires java.net.http;
+    requires com.fasterxml.jackson.databind;
 
     opens pl.dietbuilder.app to javafx.fxml;
     exports pl.dietbuilder.app;
