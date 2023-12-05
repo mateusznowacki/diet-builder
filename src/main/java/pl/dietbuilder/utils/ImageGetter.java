@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ImageGetter {
 
-    private static final String API_KEY = "b4X109BsK3DRQ29SxuEB6JLX7xSzE6nh636cosGE89l0xGYQaXmUMJSG";
+    private static final String API_KEY = "";
 
     public static String getFirstImageFromSearch(String query) throws Exception {
         String apiUrl = "https://api.pexels.com/v1/search?query=" + query;
