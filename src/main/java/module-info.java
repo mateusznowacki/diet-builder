@@ -26,5 +26,7 @@ module pl.dietbuilder {
     opens pl.dietbuilder.controllers.meal to javafx.fxml;
     exports pl.dietbuilder.controllers.product;
     opens pl.dietbuilder.controllers.product to javafx.fxml;
+    exports pl.dietbuilder.controllers.shoppinglist;
+    opens pl.dietbuilder.controllers.shoppinglist to javafx.fxml;
 
 }

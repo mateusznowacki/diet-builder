@@ -25,41 +25,30 @@ public class EditProductController implements Initializable {
 
     @FXML
     private TableColumn<Product, String> categoryColumn;
-
     @FXML
     private TableColumn<Product, Integer> idColumn;
-
     @FXML
     private TableColumn<Product, String> nameColumn;
-
     @FXML
     private Button editProduct;
-
     @FXML
     private TableView<Product> productTableView;
-
     @FXML
     private TextField searchBar;
-
     @FXML
     private TextField carbohydratesAmount;
-
     @FXML
     private ChoiceBox<String> categoryChoiceBox;
-
     @FXML
     private TextField fatAmount;
-
     @FXML
     private TextField productName;
-
     @FXML
     private TextField proteinAmount;
-
     @FXML
     private TextField energyAmount;
 
-    ObservableList<Product> productsObservableList = FXCollections.observableArrayList();
+    private ObservableList<Product> productsObservableList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -94,7 +83,7 @@ public class EditProductController implements Initializable {
             double fats = formatDoubleWithComma(fatAmount.getText());
             double carbohydrates = formatDoubleWithComma(carbohydratesAmount.getText());
 
-            Product product = new Product(productId,name, category, calories, proteins, fats, carbohydrates);
+            Product product = new Product(productId, name, category, calories, proteins, fats, carbohydrates);
 
             ProductDAO productDAO = new ProductDAO(ConnectionManager.getInstance().getConnection());
             productDAO.editProduct(product);
