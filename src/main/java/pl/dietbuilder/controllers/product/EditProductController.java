@@ -1,21 +1,25 @@
 package pl.dietbuilder.controllers.product;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import pl.dietbuilder.dbmanagement.CategoryDAO;
 import pl.dietbuilder.dbmanagement.ConnectionManager;
 import pl.dietbuilder.dbmanagement.ProductDAO;
 import pl.dietbuilder.model.Product;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static pl.dietbuilder.utils.NumberFormatter.formatDoubleWithComma;
 
 public class EditProductController implements Initializable {
 
@@ -29,16 +33,81 @@ public class EditProductController implements Initializable {
     private TableColumn<Product, String> nameColumn;
 
     @FXML
+    private Button editProduct;
+
+    @FXML
     private TableView<Product> productTableView;
 
     @FXML
     private TextField searchBar;
+
+    @FXML
+    private TextField carbohydratesAmount;
+
+    @FXML
+    private ChoiceBox<String> categoryChoiceBox;
+
+    @FXML
+    private TextField fatAmount;
+
+    @FXML
+    private TextField productName;
+
+    @FXML
+    private TextField proteinAmount;
+
+    @FXML
+    private TextField energyAmount;
 
     ObservableList<Product> productsObservableList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        initalizeProductTable();
+        initalizeChoiceBox();
+        disableEditIfNothingSelected();
+
+    }
+
+    private void disableEditIfNothingSelected() {
+        BooleanBinding conditionBinding = Bindings.isNull(productTableView.getSelectionModel().selectedItemProperty());
+        editProduct.disableProperty().bind(conditionBinding);
+        productName.disableProperty().bind(conditionBinding);
+        categoryChoiceBox.disableProperty().bind(conditionBinding);
+        energyAmount.disableProperty().bind(conditionBinding);
+        carbohydratesAmount.disableProperty().bind(conditionBinding);
+        fatAmount.disableProperty().bind(conditionBinding);
+        proteinAmount.disableProperty().bind(conditionBinding);
+    }
+
+    @FXML
+    void editSelected(ActionEvent event) {
+        Product selectedProduct = productTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedProduct != null) {
+            int productId = selectedProduct.getId();
+            String name = productName.getText();
+            String category = categoryChoiceBox.getSelectionModel().getSelectedItem().toString();
+            double calories = formatDoubleWithComma(energyAmount.getText());
+            double proteins = formatDoubleWithComma(proteinAmount.getText());
+            double fats = formatDoubleWithComma(fatAmount.getText());
+            double carbohydrates = formatDoubleWithComma(carbohydratesAmount.getText());
+
+            Product product = new Product(productId,name, category, calories, proteins, fats, carbohydrates);
+
+            ProductDAO productDAO = new ProductDAO(ConnectionManager.getInstance().getConnection());
+            productDAO.editProduct(product);
+        }
+    }
+
+    private void initalizeChoiceBox() {
+        CategoryDAO categoryDAO = new CategoryDAO(ConnectionManager.getInstance().getConnection());
+        ObservableList<String> categories = FXCollections.observableArrayList(categoryDAO.getCategories());
+        categoryChoiceBox.setItems(categories);
+    }
+
+    private void initalizeProductTable() {
         ProductDAO productDAO = new ProductDAO(ConnectionManager.getInstance().getConnection());
         productsObservableList.addAll(productDAO.getAllProducts());
 
@@ -66,11 +135,8 @@ public class EditProductController implements Initializable {
             }
         }));
         SortedList<Product> sortedData = new SortedList<>(filteredData);
-
         sortedData.comparatorProperty().bind(productTableView.comparatorProperty());
-
         productTableView.setItems(sortedData);
-
     }
 }
 

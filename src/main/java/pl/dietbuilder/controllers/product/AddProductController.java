@@ -48,10 +48,17 @@ public class AddProductController implements Initializable {
     @FXML
     private TextField energyAmount;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        diableAddButton();
+        changeFirstLetterToUpper();
+        initalizeChocieBox();
+    }
+
     @FXML
     void setProductView(String query) {
         try {
-            String currentImageUrl = ImageGetter.getFirstImageFromSearch(query);
+            ImageGetter.getFirstImageFromSearch(query);
             Image image = new Image("file:src/main/resources/icons/downloaded_image.jpg");
             productView.setImage(image);
         } catch (Exception e) {
@@ -76,10 +83,7 @@ public class AddProductController implements Initializable {
 
     }
 
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        //wyłączamy przycisk dodawania produktu, jeśli nie są spełnione warunki
+    private void diableAddButton() {
         BooleanBinding conditionBinding = productName.textProperty().isEmpty()
                 .or(categoryChoiceBox.valueProperty().isNull())
                 .or(energyAmount.textProperty().isEmpty())
@@ -88,8 +92,15 @@ public class AddProductController implements Initializable {
                 .or(proteinAmount.textProperty().isEmpty());
 
         addButton.disableProperty().bind(conditionBinding);
+    }
 
-        //zmieniamy pierwszą literę na dużą w nazwie produktu
+    private void initalizeChocieBox() {
+        CategoryDAO categoryDAO = new CategoryDAO(ConnectionManager.getInstance().getConnection());
+        ObservableList<String> categories = FXCollections.observableArrayList(categoryDAO.getCategories());
+        categoryChoiceBox.setItems(categories);
+    }
+
+    private void changeFirstLetterToUpper() {
         productName.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) {
                 String text = productName.getText();
@@ -100,11 +111,5 @@ public class AddProductController implements Initializable {
                 setProductView(productName.getText());
             }
         });
-
-        //pobieramy kategorie z bazy danych i dodajemy do choiceboxa
-        CategoryDAO categoryDAO = new CategoryDAO(ConnectionManager.getInstance().getConnection());
-        ObservableList<String> categories = FXCollections.observableArrayList(categoryDAO.getCategories());
-        categoryChoiceBox.setItems(categories);
     }
-
 }

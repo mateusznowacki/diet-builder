@@ -32,6 +32,24 @@ public class ProductDAO {
         }
     }
 
+    public void editProduct(Product product) {
+        String sql = "UPDATE product SET name = ?, category = ?, energy = ?, carbohydrates = ?, fat = ?, protein = ? WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, product.getName());
+            statement.setString(2, product.getCategory());
+            statement.setDouble(3, product.getCalories());
+            statement.setDouble(4, product.getCarbohydrates());
+            statement.setDouble(5, product.getFats());
+            statement.setDouble(6, product.getProteins());
+            statement.setInt(7, product.getId());
+
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public ArrayList<Product> getAllProducts() {
         ArrayList<Product> productsList = new ArrayList<>();
 
@@ -58,5 +76,20 @@ public class ProductDAO {
         return productsList;
 
     }
+
+    public void deleteProduct(int id) {
+        try {
+            String sql = "DELETE FROM product WHERE id = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setInt(1, id);
+
+                preparedStatement.executeUpdate();
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
