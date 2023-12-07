@@ -92,7 +92,7 @@ public class EditProductController implements Initializable {
 
     private void initalizeChoiceBox() {
         CategoryDAO categoryDAO = new CategoryDAO(ConnectionManager.getInstance().getConnection());
-        ObservableList<String> categories = FXCollections.observableArrayList(categoryDAO.getCategories());
+        ObservableList<String> categories = FXCollections.observableArrayList(categoryDAO.getProductCategories());
         categoryChoiceBox.setItems(categories);
     }
 

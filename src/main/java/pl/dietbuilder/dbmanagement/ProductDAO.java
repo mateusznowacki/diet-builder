@@ -82,14 +82,11 @@ public class ProductDAO {
             String sql = "DELETE FROM product WHERE id = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setInt(1, id);
-
                 preparedStatement.executeUpdate();
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
 
 }
