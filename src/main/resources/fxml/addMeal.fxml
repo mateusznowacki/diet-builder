@@ -78,7 +78,7 @@
                               </TextField>
                            </children>
                         </GridPane>
-                        <TableView fx:id="mealTableView" layoutX="691.0" layoutY="22.0" prefHeight="329.0" prefWidth="275.0">
+                        <TableView fx:id="mealTableView" layoutX="691.0" layoutY="22.0" prefHeight="329.0" prefWidth="275.0" style="-fx-background-color: #1b1b1d;" styleClass="striped" stylesheets="@../css/cupertino-dark.css">
                           <columns>
                             <TableColumn fx:id="productNameMealView" prefWidth="222.0" text="produkt" />
                             <TableColumn fx:id="productAmountMealView" prefWidth="105.0" text="ilość" />

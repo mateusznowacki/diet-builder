@@ -1,14 +1,26 @@
 package pl.dietbuilder.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class Meal extends NutritionalInformation {
     private int id;
-    private HashMap<Integer, Double> products;
+    private String productName;
+    private double productAmount;
+    private String category;
 
-    public Meal(String name, double calories, double proteins, double fats, double carbohydrates) {
-        super(name,calories, proteins, fats, carbohydrates);
+    public Meal(String name, String category, double calories, double proteins, double fats, double carbohydrates) {
+        super(name, calories, proteins, fats, carbohydrates);
+        this.category = category;
+    }
+
+    public Meal(String name, String productName, double productAmount, String category) {
+        super(name);
+        this.productName = productName;
+        this.productAmount = productAmount;
+        this.category = category;
+    }
+
+    public Meal(String productName, double productAmount) {
+        this.productName = productName;
+        this.productAmount = productAmount;
     }
 
     public int getId() {
@@ -19,11 +31,27 @@ public class Meal extends NutritionalInformation {
         this.id = id;
     }
 
-    public HashMap<Integer, Double> getProducts() {
-        return products;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setProducts(HashMap<Integer, Double> products) {
-        this.products = products;
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public double getProductAmount() {
+        return productAmount;
+    }
+
+    public void setProductAmount(double productAmount) {
+        this.productAmount = productAmount;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

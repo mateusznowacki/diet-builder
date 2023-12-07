@@ -1,9 +1,11 @@
 package pl.dietbuilder.dbmanagement;
 
+import pl.dietbuilder.model.Meal;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class MealDAO {
 
@@ -13,15 +15,15 @@ public class MealDAO {
         this.connection = connection;
     }
 
-    public void addMeal(String name, String category,HashMap<Integer, Double> products) {
+    public void addMeal(ArrayList<Meal> meal) {
 
-        while (products.entrySet().iterator().hasNext()) {
-            String sql = "INSERT INTO meal (name, product_id, quantity) VALUES (?,?,?,?)";
+        for (int i = 0; i < meal.size(); i++) {
+            String sql = "INSERT INTO meal (meal_name, product_name, quantity, category) VALUES (?,?,?,?)";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setString(1, name);
-                statement.setString(2, category);
-                statement.setInt(3, products.entrySet().iterator().next().getKey());
-                statement.setDouble(4, products.entrySet().iterator().next().getValue());
+                statement.setString(1, meal.get(i).getName());
+                statement.setString(2, meal.get(i).getProductName());
+                statement.setDouble(3, meal.get(i).getProductAmount());
+                statement.setString(4, meal.get(i).getCategory());
 
                 statement.executeUpdate();
 
@@ -30,6 +32,8 @@ public class MealDAO {
             }
         }
     }
+
+
 
     public void deleteMeal(int id) {
         try {

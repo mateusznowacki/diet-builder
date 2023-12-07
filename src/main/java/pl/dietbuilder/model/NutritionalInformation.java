@@ -1,12 +1,11 @@
 package pl.dietbuilder.model;
 
 public abstract class NutritionalInformation {
-    private final String name;
+    private String name;
     private double calories;
     private double proteins;
     private double fats;
     private double carbohydrates;
-
 
 
     public NutritionalInformation(String name, double calories, double proteins, double fats, double carbohydrates) {
@@ -16,6 +15,14 @@ public abstract class NutritionalInformation {
         this.fats = fats;
         this.carbohydrates = carbohydrates;
 
+    }
+
+    public NutritionalInformation( ) {
+
+    }
+
+    public NutritionalInformation(String name) {
+        this.name = name;
     }
 
     public String getName() {
@@ -53,7 +60,6 @@ public abstract class NutritionalInformation {
     public void setCarbohydrates(double carbohydrates) {
         this.carbohydrates = carbohydrates;
     }
-
 
 
 }

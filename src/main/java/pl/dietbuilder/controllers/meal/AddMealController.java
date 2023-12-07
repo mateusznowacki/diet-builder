@@ -1,8 +1,9 @@
 package pl.dietbuilder.controllers.meal;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
@@ -20,7 +21,7 @@ import pl.dietbuilder.model.Meal;
 import pl.dietbuilder.model.Product;
 
 import java.net.URL;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static pl.dietbuilder.utils.NumberFormatter.formatDoubleWithComma;
@@ -33,7 +34,7 @@ public class AddMealController implements Initializable {
     private Button addToMeal;
 
     @FXML
-    private TableView<String> mealTableView;
+    private TableView<Meal> mealTableView;
 
     @FXML
     private ChoiceBox<String> categoryChoiceBox;
@@ -65,32 +66,39 @@ public class AddMealController implements Initializable {
 
     private ObservableList<Product> productsObservableList = FXCollections.observableArrayList();
     private ObservableList<Meal> mealsObservableList = FXCollections.observableArrayList();
+    private ArrayList<Meal> mealIngredients = new ArrayList<>();
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         //initialize tables
         initalizeProductTable();
         initializeMealTable();
+
         //initialize choicebox with categories
         initalizeChocieBox();
+
         //initialize product name text
         initializeProductNameText();
 
-
-
         //disabble confirm if nothing selected and delete if not confirmed
-        // disableIfNotSelectedConfirmed();
+        disableButtons();
+    }
 
+    private void disableButtons() {
+        BooleanBinding mealNameBinding = Bindings.isEmpty(mealName.textProperty());
+        BooleanBinding productAmountBinding = Bindings.isEmpty(productAmount.textProperty());
+        BooleanBinding categoryChoiceBoxBinding = Bindings.isNull(categoryChoiceBox.getSelectionModel().selectedItemProperty());
+        BooleanBinding productTableViewBinding = Bindings.isNull(productTableView.getSelectionModel().selectedItemProperty());
+
+        addToMeal.disableProperty().bind(mealNameBinding.or(productAmountBinding).or(productTableViewBinding).or(categoryChoiceBoxBinding));
+        addMeal.disableProperty().bind(mealNameBinding.or(productAmountBinding).or(productTableViewBinding).or(categoryChoiceBoxBinding));
     }
 
     private void initializeMealTable() {
 
-        productNameMealView.setCellValueFactory(new PropertyValueFactory<>("name"));
-        productAmountMealView.setCellValueFactory(new PropertyValueFactory<>("amount"));
-
-
+        productNameMealView.setCellValueFactory(new PropertyValueFactory<>("productName"));
+        productAmountMealView.setCellValueFactory(new PropertyValueFactory<>("productAmount"));
         mealTableView.setItems(mealsObservableList);
 
     }
@@ -103,26 +111,39 @@ public class AddMealController implements Initializable {
                 productName.getChildren().add(text);
             }
         });
-        }
-
+    }
 
     @FXML
     void addProductToMeal(ActionEvent event) {
-        Integer id = productTableView.getSelectionModel().getSelectedItem().getId();
-        Double amount = formatDoubleWithComma(productAmount.getText());
-
-        pr.put(id,amount);
+        Product selectedProduct = productTableView.getSelectionModel().getSelectedItem();
+        if (selectedProduct != null) {
+            String name = mealName.getText();
+            String category = categoryChoiceBox.getSelectionModel().getSelectedItem().toString();
+            String product = productTableView.getSelectionModel().getSelectedItem().getName();
+            Double amount = formatDoubleWithComma(productAmount.getText());
+            Meal ingredients = new Meal(product, amount);
+            Meal mealPart = new Meal(name, product, amount, category);
+            mealsObservableList.add(ingredients);
+            mealIngredients.add(mealPart);
+        }
     }
 
     @FXML
     void addReadyMeal(ActionEvent event) {
 
-        String name = mealName.getText();
-        String category = categoryChoiceBox.getSelectionModel().getSelectedItem().toString();
-
         MealDAO mealDAO = new MealDAO(ConnectionManager.getInstance().getConnection());
-        mealDAO.addMeal(name,category, (HashMap<Integer, Double>) productsObservableMap);
+        mealDAO.addMeal(mealIngredients);
+        // clear fields after adding meal
+        clearFields();
+    }
 
+    private void clearFields() {
+        mealIngredients.clear();
+        mealsObservableList.clear();
+        productAmount.clear();
+        productName.getChildren().clear();
+        mealName.clear();
+        categoryChoiceBox.getSelectionModel().clearSelection();
     }
 
     private void initalizeProductTable() {
@@ -140,11 +161,11 @@ public class AddMealController implements Initializable {
             }
 
             String keywordSearch = newValue.toLowerCase();
-            if (product.getName().toLowerCase().indexOf(keywordSearch) > -1) {
+            if (product.getName().toLowerCase().contains(keywordSearch)) {
                 return true;
-            } else if (product.getCategory().toLowerCase().indexOf(keywordSearch) > -1) {
+            } else if (product.getCategory().toLowerCase().contains(keywordSearch)) {
                 return true;
-            } else if (String.valueOf(product.getId()).indexOf(keywordSearch) > -1) {
+            } else if (String.valueOf(product.getId()).contains(keywordSearch)) {
                 return true;
             } else {
                 return false;

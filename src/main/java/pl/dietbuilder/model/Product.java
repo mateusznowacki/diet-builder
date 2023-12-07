@@ -35,5 +35,4 @@ public class Product extends NutritionalInformation {
         this.category = category;
     }
 
-
 }
