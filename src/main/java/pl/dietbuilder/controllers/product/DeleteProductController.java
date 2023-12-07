@@ -73,7 +73,6 @@ public class DeleteProductController implements Initializable {
         ProductDAO productDAO = new ProductDAO(ConnectionManager.getInstance().getConnection());
         productsObservableList.addAll(productDAO.getAllProducts());
 
-
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));

@@ -108,7 +108,7 @@
                         </Button>
                         <ImageView fx:id="productView" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                            <image>
-                              <Image url="@../icons/marsz_logo.png" />
+                              <Image url="@../icons/product.png" />
                            </image>
                            <GridPane.margin>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
