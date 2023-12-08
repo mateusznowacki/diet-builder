@@ -1,4 +1,4 @@
-package pl.dietbuilder.controllers;
+package pl.dietbuilder.controllers.main;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -36,6 +36,9 @@ public class MainController {
     private Button exitButton;
 
     @FXML
+    private Button seeInfo;
+
+    @FXML
     private StackPane stackPane;
 
     @FXML
@@ -46,6 +49,11 @@ public class MainController {
 
     @FXML
     void addMeal(ActionEvent event) {
+        //loadView("/fxml/addMeal.fxml");
+    }
+
+    @FXML
+    void seeMealInfo(ActionEvent event) {
         loadView("/fxml/addMeal.fxml");
     }
 

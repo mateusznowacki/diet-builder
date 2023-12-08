@@ -1,5 +1,7 @@
 package pl.dietbuilder.model;
 
+import java.util.Objects;
+
 public abstract class NutritionalInformation {
     private String name;
     private double calories;
@@ -61,5 +63,16 @@ public abstract class NutritionalInformation {
         this.carbohydrates = carbohydrates;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        NutritionalInformation that = (NutritionalInformation) o;
+        return Objects.equals(name, that.name);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 }

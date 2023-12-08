@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CategoryDAO {
-    private final Connection connection;
+    private final ConnectionManager connectionManager;
 
-    public CategoryDAO(Connection connection) {
-        this.connection = connection;
+    public CategoryDAO(ConnectionManager connectionManager) {
+        this.connectionManager = connectionManager;
     }
 
     public ArrayList<String> getProductCategories() {
@@ -18,7 +18,7 @@ public class CategoryDAO {
 
         String sql = "SELECT category FROM categories";
 
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (PreparedStatement statement = connectionManager.getConnection().prepareStatement(sql)) {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -26,6 +26,7 @@ public class CategoryDAO {
                 categories.add(category);
 
             }
+            connectionManager.closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -36,7 +37,7 @@ public class CategoryDAO {
 
         String sql = "SELECT category FROM meal_category";
 
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (PreparedStatement statement = connectionManager.getConnection().prepareStatement(sql)) {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -44,6 +45,7 @@ public class CategoryDAO {
                 categories.add(category);
 
             }
+            connectionManager.closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -26,21 +26,25 @@ public class ConnectionManager {
 
     public static ConnectionManager getInstance() {
         if (instance == null) {
-            synchronized (ConnectionManager.class) {
-                if (instance == null) {
-                    instance = new ConnectionManager();
-                }
-            }
+            instance = new ConnectionManager();
         }
         return instance;
     }
 
     public Connection getConnection() {
-        return connection;
+        try {
+            if (connection == null || connection.isClosed()) {
+                Class.forName("org.mariadb.jdbc.Driver");
+                return DriverManager.getConnection(URL, USER, PASSWORD);
+            }
+            return connection;
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Błąd podczas nawiązywania połączenia z bazą danych", e);
+        }
     }
 
     public void closeConnection() {
-        System.out.println("Zamykam polaczenie z baza danych");
         try {
             if (connection != null && !connection.isClosed()) {
                 connection.close();

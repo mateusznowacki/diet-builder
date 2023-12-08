@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1200.0" stylesheets="@../css/cupertino-dark.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.dietbuilder.controllers.MainController">
+<AnchorPane prefHeight="600.0" prefWidth="1200.0" stylesheets="@../css/cupertino-dark.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.dietbuilder.controllers.main.MainController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -70,6 +70,22 @@
                   <Button fx:id="addMeal" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="90.0" mnemonicParsing="false" onAction="#addMeal" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Dodaj">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="button" />
+                        <String fx:value="accent" />
+                     </styleClass>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="seeInfo" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="15.0" layoutY="245.0" mnemonicParsing="false" onAction="#seeMealInfo" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 14; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Informacje o posiłku">
+                     <graphic>
+                        <ImageView fx:id="seeInformation" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icons/add.png" />
                            </image>

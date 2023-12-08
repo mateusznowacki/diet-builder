@@ -10,12 +10,13 @@ module pl.dietbuilder {
     requires java.sql;
     requires java.net.http;
     requires com.fasterxml.jackson.databind;
+    requires org.mariadb.jdbc;
 
     opens pl.dietbuilder.app to javafx.fxml;
     exports pl.dietbuilder.app;
 
-    opens pl.dietbuilder.controllers to javafx.fxml;
-    exports pl.dietbuilder.controllers;
+    opens pl.dietbuilder.controllers.main to javafx.fxml;
+    exports pl.dietbuilder.controllers.main;
 
     opens pl.dietbuilder.model to javafx.fxml;
     exports pl.dietbuilder.model;
@@ -28,5 +29,6 @@ module pl.dietbuilder {
     opens pl.dietbuilder.controllers.product to javafx.fxml;
     exports pl.dietbuilder.controllers.shoppinglist;
     opens pl.dietbuilder.controllers.shoppinglist to javafx.fxml;
+
 
 }

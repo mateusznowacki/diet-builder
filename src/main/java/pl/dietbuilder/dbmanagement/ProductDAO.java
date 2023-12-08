@@ -9,15 +9,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ProductDAO {
-    private final Connection connection;
+    private final ConnectionManager connectionManager;
 
-    public ProductDAO(Connection connection) {
-        this.connection = connection;
+    public ProductDAO(ConnectionManager connectionManager) {
+        this.connectionManager = connectionManager;
     }
 
     public void addNewProduct(Product product) {
         String sql = "INSERT INTO product (name, category, energy, carbohydrates, fat, protein) VALUES (?,?,?,?,?,?)";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (PreparedStatement statement = connectionManager.getConnection().prepareStatement(sql)) {
             statement.setString(1, product.getName());
             statement.setString(2, product.getCategory());
             statement.setDouble(3, product.getCalories());
@@ -26,7 +26,7 @@ public class ProductDAO {
             statement.setDouble(6, product.getProteins());
 
             statement.executeUpdate();
-
+            connectionManager.closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -34,7 +34,7 @@ public class ProductDAO {
 
     public void editProduct(Product product) {
         String sql = "UPDATE product SET name = ?, category = ?, energy = ?, carbohydrates = ?, fat = ?, protein = ? WHERE id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (PreparedStatement statement = connectionManager.getConnection().prepareStatement(sql)) {
             statement.setString(1, product.getName());
             statement.setString(2, product.getCategory());
             statement.setDouble(3, product.getCalories());
@@ -44,6 +44,7 @@ public class ProductDAO {
             statement.setInt(7, product.getId());
 
             statement.executeUpdate();
+            connectionManager.closeConnection();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -54,7 +55,7 @@ public class ProductDAO {
         ArrayList<Product> productsList = new ArrayList<>();
 
         String sql = "SELECT * FROM product";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (PreparedStatement statement = connectionManager.getConnection().prepareStatement(sql)) {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -69,7 +70,7 @@ public class ProductDAO {
                 Product product = new Product(id, name, category, calories, proteins, fats, carbohydrates);
                 productsList.add(product);
             }
-
+            connectionManager.closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -80,13 +81,13 @@ public class ProductDAO {
     public void deleteProduct(int id) {
         try {
             String sql = "DELETE FROM product WHERE id = ?";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (PreparedStatement preparedStatement = connectionManager.getConnection().prepareStatement(sql)) {
                 preparedStatement.setInt(1, id);
                 preparedStatement.executeUpdate();
+                connectionManager.closeConnection();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
 }

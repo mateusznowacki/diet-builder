@@ -62,15 +62,16 @@ public class DeleteProductController implements Initializable {
 
     @FXML
     private void deleteSelected(ActionEvent event) {
-        ProductDAO productDAO = new ProductDAO(ConnectionManager.getInstance().getConnection());
+        ProductDAO productDAO = new ProductDAO(ConnectionManager.getInstance());
         Product product = productTableView.getSelectionModel().getSelectedItem();
         productDAO.deleteProduct(product.getId());
         productsObservableList.remove(product);
+        confirmSelection.setSelected(false);
     }
 
 
     private void initalizeProductTable() {
-        ProductDAO productDAO = new ProductDAO(ConnectionManager.getInstance().getConnection());
+        ProductDAO productDAO = new ProductDAO(ConnectionManager.getInstance());
         productsObservableList.addAll(productDAO.getAllProducts());
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));

@@ -131,7 +131,7 @@ public class AddMealController implements Initializable {
     @FXML
     void addReadyMeal(ActionEvent event) {
 
-        MealDAO mealDAO = new MealDAO(ConnectionManager.getInstance().getConnection());
+        MealDAO mealDAO = new MealDAO(ConnectionManager.getInstance());
         mealDAO.addMeal(mealIngredients);
         // clear fields after adding meal
         clearFields();
@@ -147,7 +147,7 @@ public class AddMealController implements Initializable {
     }
 
     private void initalizeProductTable() {
-        ProductDAO productDAO = new ProductDAO(ConnectionManager.getInstance().getConnection());
+        ProductDAO productDAO = new ProductDAO(ConnectionManager.getInstance());
         productsObservableList.addAll(productDAO.getAllProducts());
 
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -177,7 +177,7 @@ public class AddMealController implements Initializable {
     }
 
     private void initalizeChocieBox() {
-        CategoryDAO categoryDAO = new CategoryDAO(ConnectionManager.getInstance().getConnection());
+        CategoryDAO categoryDAO = new CategoryDAO(ConnectionManager.getInstance());
         ObservableList<String> categories = FXCollections.observableArrayList(categoryDAO.getMealCategories());
         categoryChoiceBox.setItems(categories);
     }

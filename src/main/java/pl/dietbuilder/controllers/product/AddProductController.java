@@ -78,7 +78,7 @@ public class AddProductController implements Initializable {
 
         Product product = new Product(name, category, calories, proteins, fats, carbohydrates);
 
-        ProductDAO productDAO = new ProductDAO(ConnectionManager.getInstance().getConnection());
+        ProductDAO productDAO = new ProductDAO(ConnectionManager.getInstance());
         productDAO.addNewProduct(product);
 
     }
@@ -95,7 +95,7 @@ public class AddProductController implements Initializable {
     }
 
     private void initalizeChocieBox() {
-        CategoryDAO categoryDAO = new CategoryDAO(ConnectionManager.getInstance().getConnection());
+        CategoryDAO categoryDAO = new CategoryDAO(ConnectionManager.getInstance());
         ObservableList<String> categories = FXCollections.observableArrayList(categoryDAO.getProductCategories());
         categoryChoiceBox.setItems(categories);
     }

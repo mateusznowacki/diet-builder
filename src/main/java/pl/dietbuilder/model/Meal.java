@@ -1,5 +1,7 @@
 package pl.dietbuilder.model;
 
+import java.util.Objects;
+
 public class Meal extends NutritionalInformation {
     private int id;
     private String productName;
@@ -21,6 +23,13 @@ public class Meal extends NutritionalInformation {
     public Meal(String productName, double productAmount) {
         this.productName = productName;
         this.productAmount = productAmount;
+    }
+
+    public Meal(int id,String mealName, String category) {
+        super(mealName);
+        this.id = id;
+        this.productName = productName;
+        this.category = category;
     }
 
     public int getId() {
@@ -54,4 +63,6 @@ public class Meal extends NutritionalInformation {
     public void setCategory(String category) {
         this.category = category;
     }
+
+
 }
