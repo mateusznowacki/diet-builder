@@ -49,7 +49,7 @@ public class MealDAO {
     }
 
 
-    public void editMeal(Meal meal, int id) {
+    public void editMeal(String) {
         String sql = "UPDATE meal SET product_name = ?, quantity = ? , category = ? WHERE id = ? ";
         try (PreparedStatement statement = connectionManager.getConnection().prepareStatement(sql)) {
             statement.setString(1, meal.getProductName());
@@ -92,4 +92,29 @@ public class MealDAO {
         return mealsList;
 
     }
+
+    public ArrayList<Meal> getAllMealsIngredients(String name) {
+
+        ArrayList<Meal> mealsList = new ArrayList<>();
+        String sql = "SELECT product_name, quantity FROM meal WHERE meal_name = ?";
+
+        try (PreparedStatement statement = connectionManager.getConnection().prepareStatement(sql)) {
+            statement.setString(1, name);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+
+                String productName = resultSet.getString("product_name");
+                Double quantity = resultSet.getDouble("quantity");
+
+                Meal meal = new Meal(productName, quantity);
+                mealsList.add(meal);
+            }
+            connectionManager.closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return mealsList;
+    }
+
 }
