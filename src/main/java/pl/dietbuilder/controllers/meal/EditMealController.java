@@ -91,7 +91,7 @@ public class EditMealController implements Initializable {
     void saveEditChanges(ActionEvent event) {
         MealDAO mealDAO = new MealDAO(ConnectionManager.getInstance());
 
-        mealDAO.editMeal();
+      //  mealDAO.editMeal();
 
     }
 

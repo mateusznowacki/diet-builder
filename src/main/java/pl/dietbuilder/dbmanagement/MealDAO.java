@@ -49,22 +49,22 @@ public class MealDAO {
     }
 
 
-    public void editMeal(String) {
+    public void editMeal(String a) {
         String sql = "UPDATE meal SET product_name = ?, quantity = ? , category = ? WHERE id = ? ";
-        try (PreparedStatement statement = connectionManager.getConnection().prepareStatement(sql)) {
-            statement.setString(1, meal.getProductName());
-            statement.setDouble(2, meal.getProductAmount());
-            statement.setString(3, meal.getCategory());
-            statement.setInt(4, id);
-            //  statement.setString(4, mealName);
-            // statement.setString(5, productName);
-
-            statement.executeUpdate();
-            connectionManager.closeConnection();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        try (PreparedStatement statement = connectionManager.getConnection().prepareStatement(sql)) {
+//            statement.setString(1, meal.getProductName());
+//            statement.setDouble(2, meal.getProductAmount());
+//            statement.setString(3, meal.getCategory());
+//            statement.setInt(4, id);
+//            //  statement.setString(4, mealName);
+//            // statement.setString(5, productName);
+//
+//            statement.executeUpdate();
+//            connectionManager.closeConnection();
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public ArrayList<Meal> getAllMeals() {
