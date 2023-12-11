@@ -48,16 +48,13 @@ public class EditProductController implements Initializable {
     @FXML
     private TextField energyAmount;
 
-    private ObservableList<Product> productsObservableList = FXCollections.observableArrayList();
+    private final ObservableList<Product> productsObservableList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         initalizeProductTable();
         initalizeChoiceBox();
         disableEditIfNothingSelected();
-
-
     }
 
     private void disableEditIfNothingSelected() {
@@ -80,7 +77,7 @@ public class EditProductController implements Initializable {
         if (selectedProduct != null) {
             int productId = selectedProduct.getId();
             String name = productName.getText();
-            String category = categoryChoiceBox.getSelectionModel().getSelectedItem().toString();
+            String category = categoryChoiceBox.getSelectionModel().getSelectedItem();
             double calories = formatDoubleWithComma(energyAmount.getText());
             double proteins = formatDoubleWithComma(proteinAmount.getText());
             double fats = formatDoubleWithComma(fatAmount.getText());
@@ -121,11 +118,7 @@ public class EditProductController implements Initializable {
                 return true;
             } else if (product.getCategory().toLowerCase().indexOf(keywordSearch) > -1) {
                 return true;
-            } else if (String.valueOf(product.getId()).indexOf(keywordSearch) > -1) {
-                return true;
-            } else {
-                return false;
-            }
+            } else return String.valueOf(product.getId()).indexOf(keywordSearch) > -1;
         }));
         SortedList<Product> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(productTableView.comparatorProperty());
@@ -140,7 +133,6 @@ public class EditProductController implements Initializable {
         fatAmount.clear();
         carbohydratesAmount.clear();
     }
-
 
 }
 

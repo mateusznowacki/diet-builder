@@ -15,7 +15,6 @@ public class Meal extends NutritionalInformation {
 
     }
 
-
     public Meal(String name, String productName, double productAmount, String category) {
         super(name);
         this.productName = productName;
@@ -47,16 +46,8 @@ public class Meal extends NutritionalInformation {
         return productName;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
     public double getProductAmount() {
         return productAmount;
-    }
-
-    public void setProductAmount(double productAmount) {
-        this.productAmount = productAmount;
     }
 
     public String getCategory() {

@@ -1,8 +1,8 @@
 package pl.dietbuilder.dbmanagement;
 
+import pl.dietbuilder.model.Meal;
 import pl.dietbuilder.model.Product;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -89,5 +89,29 @@ public class ProductDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<Product> getMealIngredients(ArrayList<Meal> meal) {
+        ArrayList<Product> productsList = new ArrayList<>();
+        for (int i = 0; i < meal.size(); i++) {
+            String sql = "SELECT DISTINCT m.product_name, p.category AS product_category FROM meal m JOIN product p ON m.product_name = p.name " +
+                    "WHERE m.meal_name = ?";
+            try (PreparedStatement statement = connectionManager.getConnection().prepareStatement(sql)) {
+                statement.setString(1, meal.get(i).getName());
+                ResultSet resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    String name = resultSet.getString("product_name");
+                    String category = resultSet.getString("product_category");
+
+                    Product product = new Product(name, category);
+                    productsList.add(product);
+                }
+                connectionManager.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return productsList;
     }
 }

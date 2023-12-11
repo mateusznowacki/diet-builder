@@ -50,7 +50,7 @@ public class MealInfoController implements Initializable {
     @FXML
     private Button showDataButton;
 
-    private ObservableList<Meal> mealObservableList = FXCollections.observableArrayList();
+    private final ObservableList<Meal> mealObservableList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -67,7 +67,6 @@ public class MealInfoController implements Initializable {
 
         NutritionalValuesCalculator calculator = new NutritionalValuesCalculator();
         assignNutritionalValues(calculator.getNutritionalValues(mealDAO.getMealInfo(mealName)));
-
     }
 
     private void initalizeMealTable() {
@@ -89,11 +88,7 @@ public class MealInfoController implements Initializable {
                 return true;
             } else if (meal.getCategory().toLowerCase().contains(keywordSearch)) {
                 return true;
-            } else if (String.valueOf(meal.getId()).contains(keywordSearch)) {
-                return true;
-            } else {
-                return false;
-            }
+            } else return String.valueOf(meal.getId()).contains(keywordSearch);
         }));
         SortedList<Meal> sortedData = new SortedList<Meal>(filteredData);
         sortedData.comparatorProperty().bind(mealTableView.comparatorProperty());
@@ -128,6 +123,5 @@ public class MealInfoController implements Initializable {
         fatAmount.getChildren().clear();
         carbohydratesAmount.getChildren().clear();
     }
-
 
 }

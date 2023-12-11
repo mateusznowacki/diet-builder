@@ -40,7 +40,7 @@ public class DeleteMealController implements Initializable {
     @FXML
     private TextField searchBar;
 
-    private ObservableList<Meal> mealObservableList = FXCollections.observableArrayList();
+    private final ObservableList<Meal> mealObservableList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -57,7 +57,6 @@ public class DeleteMealController implements Initializable {
         BooleanBinding deleteBinding = Bindings.not(confirmSelection.selectedProperty());
         deleteMeal.disableProperty().bind(deleteBinding);
 
-
     }
 
     @FXML
@@ -69,6 +68,7 @@ public class DeleteMealController implements Initializable {
         mealDAO.deleteMeal(meal.getName());
         mealObservableList.remove(meal);
         confirmSelection.setSelected(false);
+
     }
 
 
@@ -91,11 +91,7 @@ public class DeleteMealController implements Initializable {
                 return true;
             } else if (meal.getCategory().toLowerCase().contains(keywordSearch)) {
                 return true;
-            } else if (String.valueOf(meal.getId()).contains(keywordSearch)) {
-                return true;
-            } else {
-                return false;
-            }
+            } else return String.valueOf(meal.getId()).contains(keywordSearch);
         }));
         SortedList<Meal> sortedData = new SortedList<Meal>(filteredData);
         sortedData.comparatorProperty().bind(mealTableView.comparatorProperty());

@@ -71,15 +71,13 @@ public class EditMealController implements Initializable {
     @FXML
     private TableView<Meal> mealsTableView;
 
-    private ObservableList<Meal> mealObservableList = FXCollections.observableArrayList();
-    private ObservableList<Meal> mealIngredientsObservableList = FXCollections.observableArrayList();
-    private ObservableList<Product> productsObservableList = FXCollections.observableArrayList();
+    private final ObservableList<Meal> mealObservableList = FXCollections.observableArrayList();
+    private final ObservableList<Meal> mealIngredientsObservableList = FXCollections.observableArrayList();
+    private final ObservableList<Product> productsObservableList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         initializeTables();
-
         disableButtons();
     }
 
@@ -109,7 +107,6 @@ public class EditMealController implements Initializable {
         refreshMealIngredientsTV(mealName);
 
         newProductAmount.clear();
-
     }
 
     @FXML
@@ -137,8 +134,6 @@ public class EditMealController implements Initializable {
 
         productName.getChildren().clear();
         productAmount.clear();
-
-
     }
 
     private void initializeProductNameText() {
@@ -168,16 +163,11 @@ public class EditMealController implements Initializable {
                 return true;
             } else if (meal.getCategory().toLowerCase().contains(keywordSearch)) {
                 return true;
-            } else if (String.valueOf(meal.getId()).contains(keywordSearch)) {
-                return true;
-            } else {
-                return false;
-            }
+            } else return String.valueOf(meal.getId()).contains(keywordSearch);
         }));
         SortedList<Meal> sortedData = new SortedList<Meal>(filteredData);
         sortedData.comparatorProperty().bind(mealsTableView.comparatorProperty());
         mealsTableView.setItems(sortedData);
-
     }
 
     private void initalizeMealIngredientsTV() {
@@ -195,7 +185,6 @@ public class EditMealController implements Initializable {
         amountTable.setCellValueFactory(new PropertyValueFactory<>("productAmount"));
 
         mealingredientsTV.setItems(mealIngredientsObservableList);
-
     }
 
     private void refreshMealIngredientsTV(String mealName) {
@@ -208,7 +197,6 @@ public class EditMealController implements Initializable {
         amountTable.setCellValueFactory(new PropertyValueFactory<>("productAmount"));
 
         mealingredientsTV.setItems(mealIngredientsObservableList);
-
     }
 
     private void initalizeProductTable() {
@@ -229,11 +217,7 @@ public class EditMealController implements Initializable {
                 return true;
             } else if (product.getCategory().toLowerCase().contains(keywordSearch)) {
                 return true;
-            } else if (String.valueOf(product.getId()).contains(keywordSearch)) {
-                return true;
-            } else {
-                return false;
-            }
+            } else return String.valueOf(product.getId()).contains(keywordSearch);
         }));
         SortedList<Product> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(productTV.comparatorProperty());
@@ -246,8 +230,6 @@ public class EditMealController implements Initializable {
         BooleanBinding productAmountBind = productAmount.textProperty().isEmpty();
 
         editMeal.disableProperty().bind(mealTableBind.or(mealIngredientsTableBind).or(productAmountBind));
-
-
     }
 
     private void disableRemoveButton() {
@@ -255,7 +237,6 @@ public class EditMealController implements Initializable {
         BooleanBinding mealIngredientsTableBind = Bindings.isNull(mealingredientsTV.getSelectionModel().selectedItemProperty());
 
         removeProduct.disableProperty().bind(mealTableBind.or(mealIngredientsTableBind));
-
     }
 
     private void disableAddButton() {
@@ -264,8 +245,6 @@ public class EditMealController implements Initializable {
         BooleanBinding mealTableBind = Bindings.isNull(mealsTableView.getSelectionModel().selectedItemProperty());
 
         addProductToMeal.disableProperty().bind(productTableBind.or(productAmountBind).or(mealTableBind));
-
     }
-
 
 }

@@ -1,11 +1,8 @@
 package pl.dietbuilder.model;
 
-import javafx.scene.control.CheckBox;
-
 public class Product extends NutritionalInformation {
     private int id;
     private String category;
-
 
     public Product(String name, String category, double calories, double proteins, double fats, double carbohydrates) {
         super(name, calories, proteins, fats, carbohydrates);
@@ -17,6 +14,11 @@ public class Product extends NutritionalInformation {
         this.id = id;
         this.category = category;
 
+    }
+
+    public Product(String name, String category) {
+        super(name);
+        this.category = category;
     }
 
     public int getId() {

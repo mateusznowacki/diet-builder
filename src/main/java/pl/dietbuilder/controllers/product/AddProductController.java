@@ -15,11 +15,11 @@ import pl.dietbuilder.dbmanagement.CategoryDAO;
 import pl.dietbuilder.dbmanagement.ConnectionManager;
 import pl.dietbuilder.dbmanagement.ProductDAO;
 import pl.dietbuilder.model.Product;
-import pl.dietbuilder.utils.ImageGetter;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static pl.dietbuilder.utils.ImageGetter.getFirstImageFromSearch;
 import static pl.dietbuilder.utils.NumberFormatter.formatDoubleWithComma;
 
 public class AddProductController implements Initializable {
@@ -57,20 +57,23 @@ public class AddProductController implements Initializable {
 
     @FXML
     void setProductView(String query) {
+
         try {
-            ImageGetter.getFirstImageFromSearch(query);
-            Image image = new Image("file:src/main/resources/icons/downloaded_image.jpg");
+            getFirstImageFromSearch(query);
+            Image image = new Image(getClass().getResource("/icons/downloaded_image.jpg").toExternalForm());
             productView.setImage(image);
+
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
+
     }
 
     @FXML
     void addNewProduct(ActionEvent event) {
 
         String name = productName.getText();
-        String category = categoryChoiceBox.getSelectionModel().getSelectedItem().toString();
+        String category = categoryChoiceBox.getSelectionModel().getSelectedItem();
         double calories = formatDoubleWithComma(energyAmount.getText());
         double proteins = formatDoubleWithComma(proteinAmount.getText());
         double fats = formatDoubleWithComma(fatAmount.getText());
@@ -99,6 +102,7 @@ public class AddProductController implements Initializable {
         CategoryDAO categoryDAO = new CategoryDAO(ConnectionManager.getInstance());
         ObservableList<String> categories = FXCollections.observableArrayList(categoryDAO.getProductCategories());
         categoryChoiceBox.setItems(categories);
+
     }
 
     private void changeFirstLetterToUpper() {
@@ -108,8 +112,8 @@ public class AddProductController implements Initializable {
                 if (!text.isEmpty()) {
                     String modifiedText = text.substring(0, 1).toUpperCase() + text.substring(1);
                     productName.setText(modifiedText);
+                    setProductView(productName.getText());
                 }
-                setProductView(productName.getText());
             }
         });
     }

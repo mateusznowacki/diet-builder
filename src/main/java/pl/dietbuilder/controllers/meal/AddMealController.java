@@ -41,6 +41,7 @@ public class AddMealController implements Initializable {
 
     @FXML
     private TableColumn<Product, String> categoryColumn;
+
     @FXML
     private TableColumn<Product, String> nameColumn;
 
@@ -49,6 +50,7 @@ public class AddMealController implements Initializable {
 
     @FXML
     private TableColumn<Product, String> productNameMealView;
+
     @FXML
     private TableColumn<Product, String> productAmountMealView;
 
@@ -64,9 +66,9 @@ public class AddMealController implements Initializable {
     @FXML
     private TextField searchBar;
 
-    private ObservableList<Product> productsObservableList = FXCollections.observableArrayList();
-    private ObservableList<Meal> mealsObservableList = FXCollections.observableArrayList();
-    private ArrayList<Meal> mealIngredients = new ArrayList<>();
+    private final ObservableList<Product> productsObservableList = FXCollections.observableArrayList();
+    private final ObservableList<Meal> mealsObservableList = FXCollections.observableArrayList();
+    private final ArrayList<Meal> mealIngredients = new ArrayList<>();
 
 
     @Override
@@ -118,7 +120,7 @@ public class AddMealController implements Initializable {
         Product selectedProduct = productTableView.getSelectionModel().getSelectedItem();
         if (selectedProduct != null) {
             String name = mealName.getText();
-            String category = categoryChoiceBox.getSelectionModel().getSelectedItem().toString();
+            String category = categoryChoiceBox.getSelectionModel().getSelectedItem();
             String product = productTableView.getSelectionModel().getSelectedItem().getName();
             Double amount = formatDoubleWithComma(productAmount.getText());
             Meal ingredients = new Meal(product, amount);
@@ -165,11 +167,7 @@ public class AddMealController implements Initializable {
                 return true;
             } else if (product.getCategory().toLowerCase().contains(keywordSearch)) {
                 return true;
-            } else if (String.valueOf(product.getId()).contains(keywordSearch)) {
-                return true;
-            } else {
-                return false;
-            }
+            } else return String.valueOf(product.getId()).contains(keywordSearch);
         }));
         SortedList<Product> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(productTableView.comparatorProperty());

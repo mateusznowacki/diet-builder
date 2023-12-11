@@ -11,32 +11,6 @@ import javafx.scene.layout.StackPane;
 import java.io.IOException;
 
 public class MainController {
-    @FXML
-    private Button addMeal;
-
-    @FXML
-    private Button addProduct;
-
-    @FXML
-    private Button addShoppingList;
-
-    @FXML
-    private Button deleteMeal;
-
-    @FXML
-    private Button deleteProduct;
-
-    @FXML
-    private Button editMeal;
-
-    @FXML
-    private Button editProduct;
-
-    @FXML
-    private Button exitButton;
-
-    @FXML
-    private Button seeInfo;
 
     @FXML
     private StackPane stackPane;
@@ -97,6 +71,5 @@ public class MainController {
             e.printStackTrace();
         }
     }
-
 
 }

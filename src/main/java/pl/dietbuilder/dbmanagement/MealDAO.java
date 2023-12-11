@@ -33,7 +33,6 @@ public class MealDAO {
         }
     }
 
-
     public void deleteMeal(String mealName) {
         try {
             String sql = "DELETE FROM meal WHERE meal_name = ?";
@@ -62,7 +61,6 @@ public class MealDAO {
             e.printStackTrace();
         }
     }
-
 
     public void editMeal(String mealName, String productName, Double newAmount) {
         String sql = "UPDATE meal SET  quantity = ? WHERE meal_name = ? AND product_name = ?";

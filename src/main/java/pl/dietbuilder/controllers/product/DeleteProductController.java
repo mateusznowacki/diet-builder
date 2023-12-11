@@ -42,7 +42,7 @@ public class DeleteProductController implements Initializable {
     @FXML
     private TextField searchBar;
 
-    private ObservableList<Product> productsObservableList = FXCollections.observableArrayList();
+    private final ObservableList<Product> productsObservableList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -90,11 +90,7 @@ public class DeleteProductController implements Initializable {
                 return true;
             } else if (product.getCategory().toLowerCase().indexOf(keywordSearch) > -1) {
                 return true;
-            } else if (String.valueOf(product.getId()).indexOf(keywordSearch) > -1) {
-                return true;
-            } else {
-                return false;
-            }
+            } else return String.valueOf(product.getId()).indexOf(keywordSearch) > -1;
         }));
         SortedList<Product> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(productTableView.comparatorProperty());

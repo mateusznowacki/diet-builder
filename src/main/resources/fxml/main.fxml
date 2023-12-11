@@ -19,7 +19,7 @@
             <VBox prefWidth="200.0" style="-fx-background-color: -color-base-7;" stylesheets="@../css/cupertino-dark.css" BorderPane.alignment="CENTER">
                <children>
                   <Label alignment="CENTER" prefHeight="40.0" prefWidth="200.0" style="-fx-font-weight: bold;" styleClass="title-4" stylesheets="@../css/cupertino-dark.css" text="Produkty" />
-                  <Button fx:id="addProduct" alignment="BASELINE_LEFT" graphicTextGap="6.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" styleClass="accent" stylesheets="@../css/cupertino-dark.css" text="Dodaj">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="6.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" styleClass="accent" stylesheets="@../css/cupertino-dark.css" text="Dodaj">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -34,7 +34,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="editProduct" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#editProduct" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Edytuj">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#editProduct" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Edytuj">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -50,7 +50,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="deleteProduct" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Usuń">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Usuń">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -67,7 +67,7 @@
                      </VBox.margin>
                   </Button>
                   <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="200.0" style="-fx-font-weight: bold;" styleClass="title-4" stylesheets="@../css/cupertino-dark.css" text="Posiłki" />
-                  <Button fx:id="addMeal" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="90.0" mnemonicParsing="false" onAction="#addMeal" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Dodaj">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="90.0" mnemonicParsing="false" onAction="#addMeal" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Dodaj">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -83,7 +83,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="seeInfo" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="15.0" layoutY="245.0" mnemonicParsing="false" onAction="#seeMealInfo" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 14; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Informacje o posiłku">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="15.0" layoutY="245.0" mnemonicParsing="false" onAction="#seeMealInfo" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 14; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Informacje o posiłku">
                      <graphic>
                         <ImageView fx:id="seeInformation" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -99,7 +99,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="editMeal" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#editMeal" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Edytuj">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#editMeal" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Edytuj">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -115,7 +115,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="deleteMeal" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" onAction="#deleteMeal" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Usuń">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" onAction="#deleteMeal" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Usuń">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -132,7 +132,7 @@
                      </VBox.margin>
                   </Button>
                   <Label alignment="CENTER" layoutX="10.0" layoutY="170.0" prefHeight="40.0" prefWidth="200.0" style="-fx-font-weight: bold;" styleClass="title-4" stylesheets="@../css/cupertino-dark.css" text="Lista zakupów" />
-                  <Button fx:id="addShoppingList" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#addShoppingList" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Dodaj">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#addShoppingList" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16; -fx-font-weight: bold;" stylesheets="@../css/cupertino-dark.css" text="Dodaj">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
