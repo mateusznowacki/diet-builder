@@ -8,10 +8,13 @@ public class Meal extends NutritionalInformation {
     private double productAmount;
     private String category;
 
-    public Meal(String name, String category, double calories, double proteins, double fats, double carbohydrates) {
+    public Meal(String name, String productName,double productAmount, double calories, double proteins, double fats, double carbohydrates) {
         super(name, calories, proteins, fats, carbohydrates);
-        this.category = category;
+        this.productName = productName;
+        this.productAmount = productAmount;
+
     }
+
 
     public Meal(String name, String productName, double productAmount, String category) {
         super(name);

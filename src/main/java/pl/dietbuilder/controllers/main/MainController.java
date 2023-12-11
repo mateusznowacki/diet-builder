@@ -49,12 +49,12 @@ public class MainController {
 
     @FXML
     void addMeal(ActionEvent event) {
-        //loadView("/fxml/addMeal.fxml");
+        loadView("/fxml/addMeal.fxml");
     }
 
     @FXML
     void seeMealInfo(ActionEvent event) {
-        loadView("/fxml/addMeal.fxml");
+        loadView("/fxml/mealInfo.fxml");
     }
 
     @FXML

@@ -57,17 +57,20 @@ public class EditProductController implements Initializable {
         initalizeChoiceBox();
         disableEditIfNothingSelected();
 
+
     }
 
     private void disableEditIfNothingSelected() {
         BooleanBinding conditionBinding = Bindings.isNull(productTableView.getSelectionModel().selectedItemProperty());
-        editProduct.disableProperty().bind(conditionBinding);
+
         productName.disableProperty().bind(conditionBinding);
         categoryChoiceBox.disableProperty().bind(conditionBinding);
         energyAmount.disableProperty().bind(conditionBinding);
         carbohydratesAmount.disableProperty().bind(conditionBinding);
         fatAmount.disableProperty().bind(conditionBinding);
         proteinAmount.disableProperty().bind(conditionBinding);
+        editProduct.disableProperty().bind(conditionBinding);
+
     }
 
     @FXML
@@ -88,6 +91,7 @@ public class EditProductController implements Initializable {
             ProductDAO productDAO = new ProductDAO(ConnectionManager.getInstance());
             productDAO.editProduct(product);
         }
+        clearFields();
     }
 
     private void initalizeChoiceBox() {
@@ -127,6 +131,17 @@ public class EditProductController implements Initializable {
         sortedData.comparatorProperty().bind(productTableView.comparatorProperty());
         productTableView.setItems(sortedData);
     }
+
+    private void clearFields() {
+        productName.clear();
+        categoryChoiceBox.getSelectionModel().clearSelection();
+        energyAmount.clear();
+        proteinAmount.clear();
+        fatAmount.clear();
+        carbohydratesAmount.clear();
+    }
+
+
 }
 
 

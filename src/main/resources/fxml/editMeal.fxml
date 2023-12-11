@@ -98,7 +98,7 @@
                                     <Insets left="30.0" />
                                  </GridPane.margin>
                               </Button>
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="productAmount" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Text layoutX="76.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produkt: " GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                                  <styleClass>
                                     <String fx:value="text-bolder" />

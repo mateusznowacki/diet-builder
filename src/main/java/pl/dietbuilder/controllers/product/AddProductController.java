@@ -80,6 +80,7 @@ public class AddProductController implements Initializable {
 
         ProductDAO productDAO = new ProductDAO(ConnectionManager.getInstance());
         productDAO.addNewProduct(product);
+        clearFields();
 
     }
 
@@ -111,5 +112,14 @@ public class AddProductController implements Initializable {
                 setProductView(productName.getText());
             }
         });
+    }
+
+    private void clearFields() {
+        productName.clear();
+        categoryChoiceBox.getSelectionModel().clearSelection();
+        energyAmount.clear();
+        proteinAmount.clear();
+        fatAmount.clear();
+        carbohydratesAmount.clear();
     }
 }

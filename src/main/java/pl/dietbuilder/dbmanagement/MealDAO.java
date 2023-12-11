@@ -48,23 +48,36 @@ public class MealDAO {
         }
     }
 
+    public void deleteMealIngredient(String mealName, String productName) {
+        try {
+            String sql = "DELETE FROM meal WHERE meal_name = ? AND product_name = ?";
+            try (PreparedStatement preparedStatement = connectionManager.getConnection().prepareStatement(sql)) {
+                preparedStatement.setString(1, mealName);
+                preparedStatement.setString(2, productName);
 
-    public void editMeal(String a) {
-        String sql = "UPDATE meal SET product_name = ?, quantity = ? , category = ? WHERE id = ? ";
-//        try (PreparedStatement statement = connectionManager.getConnection().prepareStatement(sql)) {
-//            statement.setString(1, meal.getProductName());
-//            statement.setDouble(2, meal.getProductAmount());
-//            statement.setString(3, meal.getCategory());
-//            statement.setInt(4, id);
-//            //  statement.setString(4, mealName);
-//            // statement.setString(5, productName);
-//
-//            statement.executeUpdate();
-//            connectionManager.closeConnection();
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+                preparedStatement.executeUpdate();
+                connectionManager.closeConnection();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void editMeal(String mealName, String productName, Double newAmount) {
+        String sql = "UPDATE meal SET  quantity = ? WHERE meal_name = ? AND product_name = ?";
+        try (PreparedStatement statement = connectionManager.getConnection().prepareStatement(sql)) {
+
+            statement.setDouble(1, newAmount);
+            statement.setString(2, mealName);
+            statement.setString(3, productName);
+
+            statement.executeUpdate();
+            connectionManager.closeConnection();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public ArrayList<Meal> getAllMeals() {
@@ -117,4 +130,47 @@ public class MealDAO {
         return mealsList;
     }
 
+    public void addIngredient(String mealName, String productName, Double productAmount, String category) {
+
+        String sql = "INSERT INTO meal (meal_name, product_name, quantity, category) VALUES (?,?,?,?)";
+        try (PreparedStatement statement = connectionManager.getConnection().prepareStatement(sql)) {
+            statement.setString(1, mealName);
+            statement.setString(2, productName);
+            statement.setDouble(3, productAmount);
+            statement.setString(4, category);
+
+            statement.executeUpdate();
+            connectionManager.closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<Meal> getMealInfo(String mealName) {
+        ArrayList<Meal> mealsList = new ArrayList<>();
+        String sql = "SELECT m.meal_name, m.quantity, p.name, p.carbohydrates, p.fat, p.protein, p.energy FROM meal m " +
+                "JOIN product p ON m.product_name = p.name WHERE m.meal_name = ?";
+
+        try (PreparedStatement statement = connectionManager.getConnection().prepareStatement(sql)) {
+            statement.setString(1, mealName);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                String name = resultSet.getString("m.meal_name");
+                Double quantity = resultSet.getDouble("m.quantity");
+                String productName = resultSet.getString("p.name");
+                Double carbohydrates = resultSet.getDouble("p.carbohydrates");
+                Double fat = resultSet.getDouble("p.fat");
+                Double protein = resultSet.getDouble("p.protein");
+                Double energy = resultSet.getDouble("p.energy");
+
+                mealsList.add(new Meal(name, productName, quantity, energy, protein,fat, carbohydrates));
+            }
+                connectionManager.closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return mealsList;
+    }
 }
