@@ -11,6 +11,7 @@ module pl.dietbuilder {
     requires java.net.http;
     requires com.fasterxml.jackson.databind;
     requires org.mariadb.jdbc;
+    requires org.apache.pdfbox;
     //requires org.apache.pdfbox;
 
     opens pl.dietbuilder.app to javafx.fxml;

@@ -8,8 +8,8 @@ public class ConnectionManager {
     private static ConnectionManager instance;
     private final Connection connection;
     private static final String URL = "jdbc:mariadb://mariadb1011.server639277.nazwa.pl:3306/server639277_diet";
-    private static final String USER = System.getenv("DB_USER");
-    private static final String PASSWORD = System.getenv("DB_PASS");
+    private static final String USER ="server639277_diet";// System.getenv("DB_USER");
+    private static final String PASSWORD = "Admin123#";// System.getenv("DB_PASSWORD");
 
     private ConnectionManager() {
         try {
@@ -54,4 +54,5 @@ public class ConnectionManager {
             throw new RuntimeException("Blad podczas zamykania polaczenia z baza danych", e);
         }
     }
+
 }
